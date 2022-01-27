@@ -1,5 +1,6 @@
 package guru.springframework.msscbeerservice.web.controller;
 
+import guru.springframework.msscbeerservice.service.BeerService;
 import guru.springframework.msscbeerservice.web.model.BeerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,22 +13,25 @@ import java.util.UUID;
 @RestController
 public class BeerController {
 
+    private final BeerService beerService;
+
+    public BeerController(BeerService beerService) {
+        this.beerService = beerService;
+    }
+
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId) {
 
-        //TODO: impl
-        return new ResponseEntity<>(BeerDto.builder().beerId(UUID.randomUUID()).build(), HttpStatus.OK);
+        return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity saveBeer(@RequestBody @Validated BeerDto beerDto) {
-        //todo impl
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(beerService.saveBeer(beerDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
     public ResponseEntity updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDto beerDto) {
-        //TODO: impl
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
     }
 }
