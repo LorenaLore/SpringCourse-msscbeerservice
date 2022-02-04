@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @RequiredArgsConstructor
-//@Component
+@Component
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC = "0631234200036";
@@ -20,7 +20,9 @@ public class BeerLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        loadBeerObjects();
+        if (beerRepository.count() == 0) {
+            loadBeerObjects();
+        }
     }
 
     private void loadBeerObjects() {
