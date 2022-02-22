@@ -2,7 +2,7 @@ package guru.springframework.msscbeerservice.service.brewing;
 
 import guru.springframework.msscbeerservice.config.JmsJacksonConfig;
 import guru.springframework.msscbeerservice.domain.Beer;
-import guru.springframework.msscbeerservice.event.BrewBeerEvent;
+import guru.sfg.common.events.BrewBeerEvent;
 import guru.springframework.msscbeerservice.repository.BeerRepository;
 import guru.springframework.msscbeerservice.service.inventory.BeerInventoryService;
 import guru.springframework.msscbeerservice.web.mapper.BeerMapper;
